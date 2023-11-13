@@ -5,7 +5,9 @@
   <meta charset="UTF-8"/>
   <title>web_1</title>
   <link rel="stylesheet" href="styles/styles.css" />
-  <script src="index.js" defer></script>
+  <%--  подключение скриптов  --%>
+  <script src="scripts/graph.js" defer></script>
+  <script src="scripts/validation.js" defer></script>
 </head>
 <body>
 <div class="container" id="header">
@@ -28,7 +30,7 @@
   <p>Enter parameters</p>
   <p>(Every parameter should be filled!):</p>
 
-  <form>
+  <form> <%-- может быть понадобиться настроить form --%>
     <div class="selection" id="selection_X">
       <label for="enter_X">-5</label>
       <input type="radio" class="enter_X" name="enter_X" value="-5" />
