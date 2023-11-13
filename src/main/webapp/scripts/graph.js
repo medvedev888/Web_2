@@ -7,11 +7,6 @@ const figuresCtx = canvasGraphFigures.getContext("2d");
 const canvasGraphGridWidth = canvasGraphGrid.clientWidth;
 const canvasGraphGridHeight = canvasGraphGrid.clientHeight;
 
-//main variables
-let x = 0;
-let y = 0;
-let r = 1;
-
 // Main axes
 const xAxis = canvasGraphGridWidth / 2;
 const yAxis = canvasGraphGridHeight / 2;

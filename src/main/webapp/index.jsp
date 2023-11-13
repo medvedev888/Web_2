@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
-  <title>web_1</title>
+  <title>web_2</title>
   <link rel="stylesheet" href="styles/styles.css" />
   <%--  подключение скриптов  --%>
   <script src="scripts/graph.js" defer></script>
@@ -32,6 +32,7 @@
 
   <form> <%-- может быть понадобиться настроить form --%>
     <div class="selection" id="selection_X">
+      <p>Choose X:</p>
       <label for="enter_X">-5</label>
       <input type="radio" class="enter_X" name="enter_X" value="-5" />
       <label for="enter_X">-4</label>
