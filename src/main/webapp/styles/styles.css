@@ -41,17 +41,6 @@ button {
     box-shadow: 10px 10px 20px 0px rgba(0, 0, 0, 0.25);
 }
 
-#header {
-    display: flex;
-    background: rgba(255, 255, 255, 0.45);
-    margin-top: 40px;
-    margin-left: 40px;
-    margin-right: 40px;
-    width: auto;
-    height: 100px;
-    position: relative;
-}
-
 .group {
     position: absolute;
     margin-top: 27px;
@@ -78,6 +67,42 @@ button {
     margin-top: 36px;
     font-size: 24px;
     left: 80%;
+}
+
+.selection {
+    margin-bottom: 10px;
+}
+
+.enter_Y {
+    margin-right: 3px;
+}
+
+.enter_R {
+    margin-right: 8px;
+    margin-right: 20px;
+}
+
+.hidden_notification {
+    color: #93dcda;
+    background: rgba(0, 38, 54, 50);
+    width: 260px;
+    height: 26px;
+    border-radius: 30px;
+    margin-left: 63px;
+    padding: 5px;
+    display: none;
+    margin-bottom: 10px;
+}
+
+#header {
+    display: flex;
+    background: rgba(255, 255, 255, 0.45);
+    margin-top: 40px;
+    margin-left: 40px;
+    margin-right: 40px;
+    width: auto;
+    height: 100px;
+    position: relative;
 }
 
 #graph,
@@ -116,15 +141,8 @@ button {
 #parameters p:nth-child(2) {
     margin-bottom: 10px;
 }
-.selection {
-    margin-bottom: 10px;
-}
 
-.enter_X {
-    margin-right: 2px;
-}
-
-#selection_Y input[type="text"] {
+#selection_X input[type="text"] {
     background: rgba(0, 38, 54, 0);
     width: 260px;
     height: 26px;
@@ -132,25 +150,10 @@ button {
     border: 1px solid #002636;
 }
 
-.hidden_notification {
-    color: #93dcda;
-    background: rgba(0, 38, 54, 50);
-    width: 260px;
-    height: 26px;
-    border-radius: 30px;
-    margin-left: 63px;
-    padding: 5px;
-    display: none;
-    margin-bottom: 10px;
-}
 
-#enter_Y ::placeholder {
+#enter_X ::placeholder {
     color: #002636;
     font-size: 14px;
-}
-
-.enter_R {
-    margin-right: 20px;
 }
 
 #submit_button {
@@ -176,4 +179,8 @@ button {
 
 #table td {
     padding-right: 20px;
+}
+
+#text_notification_x {
+    margin-left: 50px;
 }

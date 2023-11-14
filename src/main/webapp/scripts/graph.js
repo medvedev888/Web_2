@@ -96,7 +96,7 @@ function drawingFigure(r_value) {
     figuresCtx.beginPath();
     figuresCtx.strokeStyle = "#000000";
     figuresCtx.globalAlpha = 0.5;
-    figuresCtx.fillRect(xAxis + scaleX, yAxis, r * scaleX, r * scaleY);
+    figuresCtx.fillRect(xAxis + scaleX, yAxis, r * scaleX, r * (scaleY / 2));
     figuresCtx.closePath();
 
     //drawing triangle
@@ -104,7 +104,7 @@ function drawingFigure(r_value) {
     figuresCtx.beginPath();
     figuresCtx.moveTo(xAxis + scaleX, yAxis);
     figuresCtx.lineTo(xAxis + scaleX, yAxis + r * scaleY);
-    figuresCtx.lineTo(xAxis + scaleX - (r / 2) * scaleY, yAxis);
+    figuresCtx.lineTo(xAxis + scaleX - (r * scaleY), yAxis);
     figuresCtx.strokeStyle = "#002636";
     figuresCtx.globalAlpha = 0.5;
     figuresCtx.fill();
