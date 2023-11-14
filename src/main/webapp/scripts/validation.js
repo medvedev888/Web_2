@@ -38,7 +38,6 @@ submitButton.onclick = function () {
         if (valueX >= -3 && valueX <= 3) {
             v++;
             x = parseFloat(valueX);
-            settingParametersHeight(v);
             textNotificationX.style.marginLeft = "50px";
             notificationX.style.display = "none";
             selection_X.style.marginBottom = "10px";
@@ -76,7 +75,6 @@ submitButton.onclick = function () {
         notificationY.style.fontSize = "14px";
         selection_Y.style.marginBottom = "0px";
     } else {
-        settingParametersHeight(v);
         textNotificationY.style.marginLeft = "50px";
         notificationY.style.display = "none";
         selection_Y.style.marginBottom = "10px";
@@ -99,7 +97,6 @@ submitButton.onclick = function () {
         notificationR.style.fontSize = "14px";
         selection_R.style.marginBottom = "0px";
     } else {
-        settingParametersHeight(v);
         textNotificationR.style.marginLeft = "50px";
         notificationR.style.display = "none";
         selection_R.style.marginBottom = "10px";
@@ -109,11 +106,12 @@ submitButton.onclick = function () {
 };
 
 function settingParametersHeight(value) {
-    if (value == 3) {
+    if (value === 3) {
         parameters.style.height = "250px";
-    } else if (value == 2) {
+        sendRequest(x, y, r, true);
+    } else if (value === 2) {
         parameters.style.height = "276px";
-    } else if (value == 1) {
+    } else if (value === 1) {
         parameters.style.height = "302px";
     } else {
         parameters.style.height = "328px";

@@ -8,6 +8,8 @@
   <%--  подключение скриптов  --%>
   <script src="scripts/graph.js" defer></script>
   <script src="scripts/validation.js" defer></script>
+  <script src="scripts/sendRequest.js" defer></script>
+  <script>const ctx = "${pageContext.request.contextPath}"</script>
 </head>
 <body>
 <div class="container" id="header">
@@ -30,7 +32,7 @@
   <p>Enter parameters</p>
   <p>(Every parameter should be filled!):</p>
 
-  <form> <%-- может быть понадобиться настроить form --%>
+  <form method="post">
 
     <div class="selection" id="selection_X">
       <label for="enter_X">Enter X:</label>
