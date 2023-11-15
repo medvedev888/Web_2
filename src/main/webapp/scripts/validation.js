@@ -9,12 +9,23 @@ radioValuesR = document.getElementsByName("enter_R");
 const textNotificationR = document.getElementById("text_notification_r");
 
 window.addEventListener("load", () => {
+
+
+    pastRValue = document.querySelector(`input[type="radio"][class="enter_R"][value="${JSON.parse(decodeURIComponent(urlParams.get('r')))}"]`);
+    if(pastRValue !== null) {
+        pastRValue.checked = true;
+    }
+    else {
+        document.querySelector(`input[type="radio"][class="enter_R"][value="1"]`);
+    }
+
     for (let radio of radioValuesR) {
         radio.addEventListener('change', () => {
             if (radio.checked) {
                 deleteFigures();
                 r = parseFloat(radio.value);
                 drawingFigure(r);
+                redrawingPoints(arrayPoints);
             }
         })
     }

@@ -15,8 +15,12 @@ const yAxis = canvasGraphGridHeight / 2;
 const scaleX = 50;
 const scaleY = 50;
 
-//grid rendering
+//arrayPoint(which saving in local storage)
+// const storedArrayPoint = JSON.parse(localStorage.getItem('arrayPoint'));
+const urlParams = new URLSearchParams(window.location.search);
+const arrayPoints = JSON.parse(decodeURIComponent(urlParams.get('arrayPoint')));
 
+//grid rendering
 function gridRendering() {
     let k = 1;
 
@@ -77,11 +81,16 @@ function drawingMainAxes() {
 }
 
 //drawing point
-function drawPoint(xCoord, yCoord) {
+function drawPoint(xCoord, yCoord, result) {
+    if(result) {
+        figuresCtx.fillStyle = "#01ff7f";
+    }
+    else {
+        figuresCtx.fillStyle = "#ee294b";
+    }
     xCoord = xCoord * scaleX + xAxis + scaleX;
     yCoord = yCoord * -1 * scaleY + yAxis;
     figuresCtx.beginPath();
-    figuresCtx.fillStyle = "#01ff7f";
     figuresCtx.globalAlpha = 1;
     figuresCtx.arc(xCoord, yCoord, 3, 0, 2 * Math.PI);
     figuresCtx.fill();
@@ -121,15 +130,29 @@ function drawingFigure(r_value) {
     figuresCtx.closePath();
 }
 
+//deleting figures
 function deleteFigures() {
-    //deleting figures
+
     figuresCtx.beginPath();
     figuresCtx.clearRect(0, 0, 450, 450);
     figuresCtx.closePath();
 }
 
-// run может потом придется убрать
+function redrawingPoints(arrayPoints){
+    if(arrayPoints !== null) {
+        for(let i = 0; i < arrayPoints.length; i++){
+            console.log(arrayPoints[i].x, arrayPoints[i].y, arrayPoints[i].result)
+            drawPoint(arrayPoints[i].x, arrayPoints[i].y, arrayPoints[i].result);
+        }
+    }
+    else {
+        console.log('arrayPoint не существует или равен null.');
+    }
+}
+
 window.addEventListener("load", () => {
     gridRendering();
     drawingMainAxes();
+    drawingFigure(JSON.parse(decodeURIComponent(urlParams.get('r'))));
+    redrawingPoints(arrayPoints);
 })

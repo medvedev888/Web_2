@@ -9,6 +9,15 @@ import jakarta.servlet.annotation.*;
 @WebServlet("/controller")
 public class ControllerServlet extends HttpServlet {
 
+    //for getting results
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("doGet");
+        String arrayPoint = request.getParameter("arrayPoint");
+        System.out.println(arrayPoint);
+        response.getWriter().write(arrayPoint);
+    }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         final String ctx = this.getServletContext().getContextPath();
@@ -21,14 +30,13 @@ public class ControllerServlet extends HttpServlet {
             var r = Float.parseFloat(request.getParameter("r"));
 
             if(request.getParameter("x") != null && request.getParameter("y") != null && request.getParameter("r") != null) {
-                System.out.println("not null)");
                 response.sendRedirect(ctx + "/areaCheck?" + "x=" + x + "&y=" + y + "&r=" + r);
             }
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
             // возврат error page
         }
-
 
     }
 

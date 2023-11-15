@@ -1,5 +1,6 @@
 package me.vladislav.web_2.Servlets;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -20,13 +21,11 @@ public class AreaCheckServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("AreaCheck work");
 
-        System.out.println(request.getParameter("x"));
-
         var x = Float.parseFloat(request.getParameter("x"));
         var y = Integer.parseInt(request.getParameter("y"));
         var r = Float.parseFloat(request.getParameter("r"));
 
-        ServletContext selvletContext = getServletContext();
+        ServletContext servletContext = getServletContext();
 
 
         Point point = new Point(x, y, r);
@@ -34,9 +33,21 @@ public class AreaCheckServlet extends HttpServlet {
 
         if(arrayPoint == null){
             arrayPoint = new ArrayList<Point>();
-            selvletContext.setAttribute("arrayPoint", arrayPoint);
+            servletContext.setAttribute("arrayPoint", arrayPoint);
         }
-        arrayPoint.add(point);
+        arrayPoint.add(0, point);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        String json = objectMapper.writeValueAsString(arrayPoint);
+
+        // Установите Content-Type как application/json
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+
+        // Отправьте JSON в ответ
+        response.getWriter().write(json);
+
+//        response.sendRedirect(request.getContextPath() + "/controller?arrayPoint=" + arrayPoint);
 
     }
 }

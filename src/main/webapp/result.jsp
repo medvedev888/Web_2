@@ -24,9 +24,14 @@
                     <!-- Получите значения X и Y для каждой точки -->
                     <td>${point.x}</td>
                     <td>${point.y}</td>
+                    <td>${point.r}</td>
+                    <td>${point.result}</td>
                 </tr>
             </c:forEach>
         </table>
+    </div>
+    <div>
+        <a href="index.jsp">New request</a>
     </div>
 </body>
 </html>
