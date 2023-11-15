@@ -16,11 +16,8 @@ async function sendRequest(x, y, r, redirect) {
     //data (ArrayList<Point> for redrawing all points)
     data = await response.json();
 
-    // saving ArrayList<Point> in local storage
-    // localStorage.setItem('arrayPoint', JSON.stringify(arrayPoint));
-
-    if(redirect === false) {
-        window.location = ctx + "/result.jsp?arrayPoint=" + encodeURIComponent(JSON.stringify(data)) + "r=" + r;
+    if(redirect === true) {
+        window.location = ctx + "/result.jsp?arrayPoint=" + encodeURIComponent(JSON.stringify(data)) + "&r=" + r;
     }
     else {
         window.location = ctx + "/index.jsp?arrayPoint=" + encodeURIComponent(JSON.stringify(data)) + "&r=" + r;

@@ -5,6 +5,8 @@
 <html>
 <head>
     <title>Result</title>
+    <script src="scripts/result.js" defer></script>
+    <script>const ctx = "${pageContext.request.contextPath}"</script>
 </head>
 <body>
     <div class="container" id="table">
@@ -31,7 +33,8 @@
         </table>
     </div>
     <div>
-        <a href="index.jsp">New request</a>
+        <button class="button" id="goToMainPage" type="submit">Go to Main Page</button>
+
     </div>
 </body>
 </html>
