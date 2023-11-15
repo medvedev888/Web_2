@@ -28,11 +28,11 @@
   <canvas id="canvas_graph_grid" width="450" height="450"></canvas>
   <canvas id="canvas_graph_figures" width="450" height="450"></canvas>
 </div>
+
 <div class="container" id="parameters">
   <p>Enter parameters</p>
   <p>(Every parameter should be filled!):</p>
 
-  <form method="post">
 
     <div class="selection" id="selection_X">
       <label for="enter_X">Enter X:</label>
@@ -87,7 +87,6 @@
     <div class="hidden_notification" id="notificationR">
       <p id="text_notification_r">need to choose 1 number</p>
     </div>
-  </form>
   <div>
     <button class="button" id="submit_button" type="submit">Submit</button>
   </div>

@@ -64,7 +64,7 @@ submitButton.onclick = function () {
         if (radio.checked) {
             checkerY = true;
             v++;
-            y = parseFloat(radio.value);
+            y = parseInt(radio.value);
             break;
         }
     }
