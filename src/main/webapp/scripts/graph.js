@@ -144,12 +144,8 @@ function deleteFigures() {
 function redrawingPoints(arrayPoints){
     if(arrayPoints !== null) {
         for(let i = 0; i < arrayPoints.length; i++){
-            console.log(arrayPoints[i].x, arrayPoints[i].y, arrayPoints[i].result)
             drawPoint(arrayPoints[i].x, arrayPoints[i].y, arrayPoints[i].result);
         }
-    }
-    else {
-        console.log('arrayPoint не существует или равен null.');
     }
 }
 

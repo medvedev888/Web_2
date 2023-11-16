@@ -28,6 +28,8 @@
                     <td>${point.y}</td>
                     <td>${point.r}</td>
                     <td>${point.result}</td>
+                    <td>${point.executedAt}</td>
+                    <td>${point.executionTime}</td>
                 </tr>
             </c:forEach>
         </table>
