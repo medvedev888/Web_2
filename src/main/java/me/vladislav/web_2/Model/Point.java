@@ -6,8 +6,8 @@ import java.util.Objects;
 public class Point {
     private final double x;
     private final double y;
-    private final double r;
-    private final boolean result;
+    private double r;
+    private boolean result;
     private String executionTime;
     private String executedAt;
 
@@ -56,6 +56,14 @@ public class Point {
 
     public String getExecutedAt() {
         return executedAt;
+    }
+
+    public void setR(double r) {
+        this.r = r;
+    }
+
+    public void setResult() {
+        this.result = checkArea(x, y, r);
     }
 
     public void setExecutionTime(long executionTime) {

@@ -24,50 +24,71 @@ public class AreaCheckServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // System.out.println("AreaCheck work");
-
-        final long startExecute = System.nanoTime();
-
-        String str_x = request.getParameter("x");
-        String str_y = request.getParameter("y");
-        String str_r = request.getParameter("r");
-
-        final double x;
-        final double y;
-        final double r;
-
-        try {
-            x = Double.parseDouble(str_x);
-            y = Double.parseDouble(str_y);
-            r = Double.parseDouble(str_r);
-        } catch (NumberFormatException | NullPointerException e) {
-            response.sendError(400);
-            return;
-        }
-
-        // formation of an array of points
-        ServletContext servletContext = request.getServletContext();
-
-        Point point = new Point(x, y, r);
-
-        // Calculate execution time and time when the job was completed
-        final long endExecute = System.nanoTime();
-        final long executionTime = endExecute - startExecute;
-        final LocalDateTime executedAt = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-        String dateTimeString = executedAt.format(formatter);
-
-        point.setExecutionTime(executionTime);
-        point.setExecutedAt(dateTimeString);
+        System.out.println("AreaCheck work "+ request.getParameter("getResultWithoutCoordinate") + " " + request.getParameter("r"));
 
         var arrayPoint = (List<Point>) getServletContext().getAttribute("arrayPoint");
+        String str_getResultWithoutCoordinate = request.getParameter("getResultWithoutCoordinate");
 
-        if(arrayPoint == null){
-            arrayPoint = new ArrayList<Point>();
-            servletContext.setAttribute("arrayPoint", arrayPoint);
+        if(Objects.equals(str_getResultWithoutCoordinate, "1") && arrayPoint != null){
+            String str_r = request.getParameter("r");
+            final double r;
+            r = Double.parseDouble(str_r);
+            for(int i = 0; i < arrayPoint.size(); i++) {
+                arrayPoint.get(i).setR(r);
+                arrayPoint.get(i).setResult();
+            }
+        }
+        else {
+
+            final long startExecute = System.nanoTime();
+
+            String str_x = request.getParameter("x");
+            String str_y = request.getParameter("y");
+            String str_r = request.getParameter("r");
+
+            final double x;
+            final double y;
+            final double r;
+
+            try {
+                x = Double.parseDouble(str_x);
+                y = Double.parseDouble(str_y);
+                r = Double.parseDouble(str_r);
+            } catch (NumberFormatException | NullPointerException e) {
+                response.sendError(400);
+                return;
+            }
+
+            // formation of an array of points
+            ServletContext servletContext = request.getServletContext();
+
+            Point point = new Point(x, y, r);
+
+            // Calculate execution time and time when the job was completed
+            final long endExecute = System.nanoTime();
+            final long executionTime = endExecute - startExecute;
+            final LocalDateTime executedAt = LocalDateTime.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+            String dateTimeString = executedAt.format(formatter);
+
+            point.setExecutionTime(executionTime);
+            point.setExecutedAt(dateTimeString);
+
+            if(arrayPoint == null){
+                arrayPoint = new ArrayList<Point>();
+                servletContext.setAttribute("arrayPoint", arrayPoint);
+            }
+
+            for(int i = 0; i < arrayPoint.size(); i++) {
+                arrayPoint.get(i).setR(r);
+                arrayPoint.get(i).setResult();
+            }
+
+            arrayPoint.add(0, point);
+
         }
 
-        arrayPoint.add(0, point);
+        System.out.println(arrayPoint);
 
         // Making JSON
         ObjectMapper objectMapper = new ObjectMapper();

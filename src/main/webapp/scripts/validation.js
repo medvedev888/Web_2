@@ -29,6 +29,7 @@ window.addEventListener("load", () => {
                 deleteFigures();
                 r = parseFloat(radio.value);
                 drawingFigure(r);
+                sendRequest(null, null, r, false);
                 redrawingPoints(arrayPoints);
             }
         })
