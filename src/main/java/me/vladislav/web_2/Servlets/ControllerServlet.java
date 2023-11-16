@@ -26,7 +26,7 @@ public class ControllerServlet extends HttpServlet {
         try {
 
             var x = Float.parseFloat(request.getParameter("x"));
-            var y = Integer.parseInt(request.getParameter("y"));
+            var y = Float.parseFloat(request.getParameter("y"));
             var r = Float.parseFloat(request.getParameter("r"));
 
             if(request.getParameter("x") != null && request.getParameter("y") != null && request.getParameter("r") != null) {

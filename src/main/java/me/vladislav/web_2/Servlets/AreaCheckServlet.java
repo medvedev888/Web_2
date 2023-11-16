@@ -22,7 +22,7 @@ public class AreaCheckServlet extends HttpServlet {
         System.out.println("AreaCheck work");
 
         var x = Float.parseFloat(request.getParameter("x"));
-        var y = Integer.parseInt(request.getParameter("y"));
+        var y = Float.parseFloat(request.getParameter("y"));
         var r = Float.parseFloat(request.getParameter("r"));
 
         ServletContext servletContext = getServletContext();

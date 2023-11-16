@@ -123,7 +123,8 @@ button {
     margin-left: 50px;
 }
 
-#canvas_graph_figures {
+#canvas_graph_figures,
+#canvas_graph_points {
     position: absolute;
     right: 65px;
 }

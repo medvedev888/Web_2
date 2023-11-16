@@ -31,6 +31,7 @@
     <p>Graph</p>
     <canvas id="canvas_graph_grid" width="450" height="450"></canvas>
     <canvas id="canvas_graph_figures" width="450" height="450"></canvas>
+    <canvas id="canvas_graph_points" width="450" height="450"></canvas>
   </div>
 
   <div class="container" id="parameters">

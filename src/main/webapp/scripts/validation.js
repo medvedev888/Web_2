@@ -10,13 +10,16 @@ const textNotificationR = document.getElementById("text_notification_r");
 
 window.addEventListener("load", () => {
 
-
     pastRValue = document.querySelector(`input[type="radio"][class="enter_R"][value="${JSON.parse(decodeURIComponent(urlParams.get('r')))}"]`);
+
     if(pastRValue !== null) {
         pastRValue.checked = true;
     }
     else {
-        document.querySelector(`input[type="radio"][class="enter_R"][value="1"]`);
+        deleteFigures();
+        document.querySelector(`input[type="radio"][class="enter_R"][value="1"]`).checked = true;
+        drawingFigure(r);
+        redrawingPoints(arrayPoints);
     }
 
     for (let radio of radioValuesR) {
@@ -75,7 +78,7 @@ submitButton.onclick = function () {
         if (radio.checked) {
             checkerY = true;
             v++;
-            y = parseInt(radio.value);
+            y = parseFloat(radio.value);
             break;
         }
     }

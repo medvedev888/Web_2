@@ -1,7 +1,10 @@
 const canvasGraphGrid = document.getElementById("canvas_graph_grid");
 const canvasGraphFigures = document.getElementById("canvas_graph_figures");
+const canvasGraphPoints = document.getElementById("canvas_graph_points");
+
 const gridCtx = canvasGraphGrid.getContext("2d");
 const figuresCtx = canvasGraphFigures.getContext("2d");
+const pointsCtx = canvasGraphPoints.getContext("2d");
 
 //size of graph
 const canvasGraphGridWidth = canvasGraphGrid.clientWidth;
@@ -15,8 +18,10 @@ const yAxis = canvasGraphGridHeight / 2;
 const scaleX = 50;
 const scaleY = 50;
 
-//arrayPoint(which saving in local storage)
-// const storedArrayPoint = JSON.parse(localStorage.getItem('arrayPoint'));
+// coordinate for sending, when click on graph
+let xCoordinate;
+let yCoordinate;
+
 const urlParams = new URLSearchParams(window.location.search);
 const arrayPoints = JSON.parse(decodeURIComponent(urlParams.get('arrayPoint')));
 
@@ -83,37 +88,36 @@ function drawingMainAxes() {
 //drawing point
 function drawPoint(xCoord, yCoord, result) {
     if(result) {
-        figuresCtx.fillStyle = "#01ff7f";
+        pointsCtx.fillStyle = "#01ff7f";
     }
     else {
-        figuresCtx.fillStyle = "#ee294b";
+        pointsCtx.fillStyle = "#ee294b";
     }
     xCoord = xCoord * scaleX + xAxis + scaleX;
     yCoord = yCoord * -1 * scaleY + yAxis;
-    figuresCtx.beginPath();
-    figuresCtx.globalAlpha = 1;
-    figuresCtx.arc(xCoord, yCoord, 3, 0, 2 * Math.PI);
-    figuresCtx.fill();
-    figuresCtx.globalAlpha = 0.5;
-    figuresCtx.fillStyle = "black";
-    figuresCtx.closePath();
+    pointsCtx.beginPath();
+    pointsCtx.globalAlpha = 1;
+    pointsCtx.arc(xCoord, yCoord, 3, 0, 2 * Math.PI);
+    pointsCtx.fill();
+    pointsCtx.globalAlpha = 0.5;
+    pointsCtx.fillStyle = "black";
+    pointsCtx.closePath();
 }
 
 function drawingFigure(r_value) {
-    r = r_value;
     //drawing square
     figuresCtx.beginPath();
     figuresCtx.strokeStyle = "#000000";
     figuresCtx.globalAlpha = 0.5;
-    figuresCtx.fillRect(xAxis + scaleX, yAxis, r * scaleX, r * (scaleY / 2));
+    figuresCtx.fillRect(xAxis + scaleX, yAxis, r_value * scaleX, r_value * (scaleY / 2));
     figuresCtx.closePath();
 
     //drawing triangle
 
     figuresCtx.beginPath();
     figuresCtx.moveTo(xAxis + scaleX, yAxis);
-    figuresCtx.lineTo(xAxis + scaleX, yAxis + r * scaleY);
-    figuresCtx.lineTo(xAxis + scaleX - (r * scaleY), yAxis);
+    figuresCtx.lineTo(xAxis + scaleX, yAxis + r_value * scaleY);
+    figuresCtx.lineTo(xAxis + scaleX - (r_value * scaleY), yAxis);
     figuresCtx.strokeStyle = "#002636";
     figuresCtx.globalAlpha = 0.5;
     figuresCtx.fill();
@@ -125,14 +129,13 @@ function drawingFigure(r_value) {
     figuresCtx.strokeStyle = "#002636";
     figuresCtx.globalAlpha = 0.5;
     figuresCtx.moveTo(xAxis + scaleX, yAxis);
-    figuresCtx.arc(xAxis + scaleX, yAxis, r * scaleX, 0, (3 * Math.PI) / 2, true);
+    figuresCtx.arc(xAxis + scaleX, yAxis, r_value * scaleX, 0, (3 * Math.PI) / 2, true);
     figuresCtx.fill();
     figuresCtx.closePath();
 }
 
 //deleting figures
 function deleteFigures() {
-
     figuresCtx.beginPath();
     figuresCtx.clearRect(0, 0, 450, 450);
     figuresCtx.closePath();
@@ -156,3 +159,13 @@ window.addEventListener("load", () => {
     drawingFigure(JSON.parse(decodeURIComponent(urlParams.get('r'))));
     redrawingPoints(arrayPoints);
 })
+
+document.querySelector('#canvas_graph_points').onmousemove = function (event) {
+    event = event || window.event
+    xCoordinate = ((event.offsetX - xAxis - scaleX) / scaleX).toFixed(2);
+    yCoordinate = ((-1) * ((event.offsetY - yAxis) / scaleY)).toFixed(2);
+
+}
+document.querySelector('#canvas_graph_points').onclick = function () {
+    sendRequest(xCoordinate, yCoordinate, r, false);
+}

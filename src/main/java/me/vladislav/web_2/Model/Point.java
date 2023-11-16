@@ -4,11 +4,11 @@ import java.util.Objects;
 
 public class Point {
     private float x;
-    private int y;
+    private float y;
     private float r;
     private boolean result;
 
-    public Point(float x, int y, float r) {
+    public Point(float x, float y, float r) {
         this.x = x;
         this.y = y;
         this.r = r;
@@ -27,7 +27,7 @@ public class Point {
         return x;
     }
 
-    public int getY() {
+    public float getY() {
         return y;
     }
 
@@ -44,7 +44,7 @@ public class Point {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Point point = (Point) o;
-        return Float.compare(point.x, x) == 0 && y == point.y && Float.compare(point.r, r) == 0 && result == point.result;
+        return Float.compare(point.x, x) == 0 && Float.compare(point.y, y) == 0 && Float.compare(point.r, r) == 0 && result == point.result;
     }
 
     @Override
