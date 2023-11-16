@@ -12,15 +12,30 @@ public class Point {
         this.x = x;
         this.y = y;
         this.r = r;
+        this.result = checkArea(x, y, r);
+    }
 
-        // написать функцию для подсчета результата
-        if(x == 0) {
-            this.result = true;
-        }
-        else {
-            this.result = false;
+    //function for getting result
+    public boolean checkArea(float x, float y, float r){
+
+        boolean result = false;
+//        if($x >= 0 && $y >= 0 && (($x * $x + $y * $y) <= ($r * $r))) {
+//            $ans = "true";
+//        } else if($x >= 0 && $y <= 0 && $x <= $r && $y >= (-1) * $r) {
+//            $ans = "true";
+//        } else if($x <= 0 && $x >= -1 * ($r / 2) && $y <= 0 && $y >= -1 * $r && $y >= (-2 * $x) - $r){
+//            $ans = "true";
+//        }
+
+        if(x >= 0 && y >= 0 && ((x * x + y * y) <= (r * r))) {
+            result = true;
+        } else if(x >= 0 && y <= 0 && x <= r && y >= (-1) * (r / 2)) {
+            result = true;
+        } else if(x <= 0 && x >= -1 * r && y <= 0 && y >= -1 * r && y >= (-1 * x) - r){
+            result = true;
         }
 
+        return result;
     }
 
     public float getX() {

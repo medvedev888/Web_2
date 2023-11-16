@@ -11,9 +11,11 @@ const textNotificationR = document.getElementById("text_notification_r");
 window.addEventListener("load", () => {
 
     pastRValue = document.querySelector(`input[type="radio"][class="enter_R"][value="${JSON.parse(decodeURIComponent(urlParams.get('r')))}"]`);
+    console.log(pastRValue);
 
     if(pastRValue !== null) {
         pastRValue.checked = true;
+        r = pastRValue.value;
     }
     else {
         deleteFigures();

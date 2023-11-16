@@ -36,6 +36,7 @@ public class AreaCheckServlet extends HttpServlet {
             servletContext.setAttribute("arrayPoint", arrayPoint);
         }
         arrayPoint.add(0, point);
+        System.out.println(point);
 
         ObjectMapper objectMapper = new ObjectMapper();
         String json = objectMapper.writeValueAsString(arrayPoint);
@@ -46,8 +47,6 @@ public class AreaCheckServlet extends HttpServlet {
 
         // Отправьте JSON в ответ
         response.getWriter().write(json);
-
-//        response.sendRedirect(request.getContextPath() + "/controller?arrayPoint=" + arrayPoint);
 
     }
 }
