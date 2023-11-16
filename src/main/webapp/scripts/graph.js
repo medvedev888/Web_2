@@ -93,7 +93,7 @@ function drawPoint(xCoord, yCoord, result) {
     else {
         pointsCtx.fillStyle = "#ee294b";
     }
-    xCoord = xCoord * scaleX + xAxis + scaleX;
+    xCoord = xCoord * scaleX + xAxis;
     yCoord = yCoord * -1 * scaleY + yAxis;
     pointsCtx.beginPath();
     pointsCtx.globalAlpha = 1;
@@ -109,15 +109,15 @@ function drawingFigure(r_value) {
     figuresCtx.beginPath();
     figuresCtx.strokeStyle = "#000000";
     figuresCtx.globalAlpha = 0.5;
-    figuresCtx.fillRect(xAxis + scaleX, yAxis, r_value * scaleX, r_value * (scaleY / 2));
+    figuresCtx.fillRect(xAxis, yAxis, r_value * scaleX, r_value * (scaleY / 2));
     figuresCtx.closePath();
 
     //drawing triangle
 
     figuresCtx.beginPath();
-    figuresCtx.moveTo(xAxis + scaleX, yAxis);
-    figuresCtx.lineTo(xAxis + scaleX, yAxis + r_value * scaleY);
-    figuresCtx.lineTo(xAxis + scaleX - (r_value * scaleY), yAxis);
+    figuresCtx.moveTo(xAxis, yAxis);
+    figuresCtx.lineTo(xAxis, yAxis + r_value * scaleY);
+    figuresCtx.lineTo(xAxis - (r_value * scaleY), yAxis);
     figuresCtx.strokeStyle = "#002636";
     figuresCtx.globalAlpha = 0.5;
     figuresCtx.fill();
@@ -128,8 +128,8 @@ function drawingFigure(r_value) {
     figuresCtx.beginPath();
     figuresCtx.strokeStyle = "#002636";
     figuresCtx.globalAlpha = 0.5;
-    figuresCtx.moveTo(xAxis + scaleX, yAxis);
-    figuresCtx.arc(xAxis + scaleX, yAxis, r_value * scaleX, 0, (3 * Math.PI) / 2, true);
+    figuresCtx.moveTo(xAxis, yAxis);
+    figuresCtx.arc(xAxis, yAxis, r_value * scaleX, 0, (3 * Math.PI) / 2, true);
     figuresCtx.fill();
     figuresCtx.closePath();
 }
@@ -158,7 +158,7 @@ window.addEventListener("load", () => {
 
 document.querySelector('#canvas_graph_points').onmousemove = function (event) {
     event = event || window.event
-    xCoordinate = ((event.offsetX - xAxis - scaleX) / scaleX).toFixed(2);
+    xCoordinate = ((event.offsetX - xAxis) / scaleX).toFixed(2);
     yCoordinate = ((-1) * ((event.offsetY - yAxis) / scaleY)).toFixed(2);
 
 }

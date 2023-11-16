@@ -4,39 +4,40 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>Result</title>
+    <title>Result (web 2)</title>
+    <link rel="stylesheet" href="styles/result-style.css" />
     <script src="scripts/result.js" defer></script>
     <script>const ctx = "${pageContext.request.contextPath}"</script>
 </head>
 <body>
-    <div class="container" id="table">
-        <table>
+    <div class="container" id="containerTable">
+        <table id="table">
             <thead>
-            <tr>
-                <td>X</td>
-                <td>Y</td>
-                <td>R</td>
-                <td>Result</td>
-                <td>Executed at</td>
-                <td>Execution time</td>
-            </tr>
-            </thead>
-            <c:forEach var="point" items="${arrayPoint}">
-                <tr>
-                    <!-- Получите значения X и Y для каждой точки -->
-                    <td>${point.x}</td>
-                    <td>${point.y}</td>
-                    <td>${point.r}</td>
-                    <td>${point.result}</td>
-                    <td>${point.executedAt}</td>
-                    <td>${point.executionTime}</td>
+                <tr id="mainStringInTable">
+                    <td>X</td>
+                    <td>Y</td>
+                    <td>R</td>
+                    <td>Result</td>
+                    <td>Executed at</td>
+                    <td>Execution time</td>
                 </tr>
-            </c:forEach>
+            </thead>
+                <tbody>
+                    <c:forEach var="point" items="${arrayPoint}">
+                        <tr id="stringOfData">
+                            <td>${point.x}</td>
+                            <td>${point.y}</td>
+                            <td>${point.r}</td>
+                            <td>${point.result}</td>
+                            <td>${point.executedAt}</td>
+                            <td>${point.executionTime}</td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
         </table>
-    </div>
-    <div>
-        <button class="button" id="goToMainPage" type="submit">Go to Main Page</button>
-
+        <div>
+            <button class="button" id="goToMainPage" type="submit">Go to Main Page</button>
+        </div>
     </div>
 </body>
 </html>
